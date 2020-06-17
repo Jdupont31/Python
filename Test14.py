@@ -9,17 +9,17 @@ fig, ax = plt.subplots()
 canvas = ax.figure.canvas
 animation = libpipong.Game(ax)
 
-# disable the default key bindings
+# Désactive les raccourcis par défaut.
 if fig.canvas.manager.key_press_handler_id is not None:
     canvas.mpl_disconnect(fig.canvas.manager.key_press_handler_id)
 
 
-# reset the blitting background on redraw
+# reset du fond d'écran.
 def handle_redraw(event):
     animation.background = None
 
 
-# bootstrap after the first draw
+# bootstrap après le premier dessin
 def start_anim(event):
     canvas.mpl_disconnect(start_anim.cid)
 
