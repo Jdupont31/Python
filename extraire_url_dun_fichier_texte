@@ -1,0 +1,14 @@
+import re
+import os
+
+
+os.chdir("C:/Users/Jo/Downloads")
+
+codesourcesouvert = open("codeS.txt", "r")
+a = codesourcesouvert.read()
+
+
+pattern=re.compile('href=\"([^\s]+)\"')
+result=pattern.findall(a)
+print (result);
+
