@@ -1,14 +1,18 @@
 import re
 import os
+import wget
 
+os.chdir("C:/Users/Jo/Downloads/Resultat_Renault")
 
-os.chdir("C:/Users/Jo/Downloads")
-
-codesourcesouvert = open("codeS.txt", "r")
+codesourcesouvert = open("../codeS.txt", "r")
 a = codesourcesouvert.read()
 
 
 pattern=re.compile('href=\"([^\s]+)\"')
 result=pattern.findall(a)
+
+print (len(result))
 print (result);
 
+for url in result:
+    wget.download(url)
