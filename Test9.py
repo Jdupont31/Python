@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
 
-# Site web et param
+# Site web à parser
 url = 'https://www.ladepeche.fr'  #
 req = requests.get(url)
 soup = BeautifulSoup(req.text, 'html.parser')
