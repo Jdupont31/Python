@@ -1,0 +1,12 @@
+from PIL import Image, ImageFile, ImageEnhance
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
+Image.MAX_IMAGE_PIXELS = 1000000000
+
+
+img = Image.open(r'C:\Users\Jo\PycharmProjects\t_img\09-2019-0520-6195-LA93-0M50-E080.jp2')
+
+area = (2000, 0, 10000, 4000)
+cropped_img = img.crop(area)
+cropped_img.show()
+
