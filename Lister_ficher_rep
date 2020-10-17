@@ -1,0 +1,8 @@
+import glob
+
+chemin = 'C:\\Users\\Jo\\PycharmProjects\\t_img\\images\\'
+
+chemin_liste = glob.glob(chemin + '*' )
+
+for chemin in chemin_liste:
+    print(chemin)
