@@ -1,0 +1,28 @@
+from PIL import Image, ImageFile
+import glob
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
+Image.MAX_IMAGE_PIXELS = 1000000000
+
+
+img = Image.open(r'C:\Users\Jo\PycharmProjects\t_img\images\09-2019-0520-6195-LA93-0M50-E080.jp2')
+
+fmg = Image.new('RGB', (20000, 20000), (255, 255, 255))
+
+chemin = 'C:\\Users\\Jo\\PycharmProjects\\t_img\\images\\'
+chemin_liste = glob.glob(chemin + '*')
+a = 0
+b = 0
+for chemin in chemin_liste:
+    img = Image.open(chemin)
+    print(a, b)
+    fmg.paste(img, (a, b))
+    if (a >= 10000) and (b < 10000):
+        a = 10000
+    if b < 10000:
+        b = 10000
+    else:
+        a = 10000
+        b = 0
+
+fmg.show()
