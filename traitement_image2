@@ -1,0 +1,74 @@
+from PIL import Image, ImageFile
+import glob
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
+Image.MAX_IMAGE_PIXELS = 1000000000
+
+img = Image.open(r'C:\Users\Jo\PycharmProjects\t_img\images\09-2019-0520-6195-LA93-0M50-E080.jp2')
+
+
+chemin = 'C:\\Users\\Jo\\PycharmProjects\\t_img\\images\\'
+chemin_liste = glob.glob(chemin + '*')
+
+im1 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0520-6195-LA93'
+                 r'-0M50-E080.jp2')
+im2 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0520-6200-LA93'
+                 r'-0M50-E080.jp2')
+im3 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0520-6205-LA93'
+                 r'-0M50-E080.jp2')
+
+im4 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0520-6210-LA93'
+                 r'-0M50-E080.jp2')
+
+im5 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0525-6190-LA93'
+                 r'-0M50-E080.jp2')
+
+im6 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0525-6195-LA93'
+                 r'-0M50-E080.jp2')
+
+im7 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0525-6200-LA93'
+                 r'-0M50-E080.jp2')
+
+im8 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0525-6205-LA93'
+                 r'-0M50-E080.jp2')
+
+im9 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0525-6210-LA93'
+                 r'-0M50-E080.jp2')
+
+im10 = Image.open(r'C:\Users\Jo\Downloads\BDORTHO_2-0_RVB-0M50_JP2-E080_LAMB93_D009_2019-01-01\BDORTHO'
+                 r'\1_DONNEES_LIVRAISON_2020-09-00087\BDO_RVB_0M50_JP2-E080_LAMB93_D09-2019\09-2019-0530-6190-LA93'
+                 r'-0M50-E080.jp2')
+
+def get_concat_h_multi_blank(im_list):
+    _im = im_list.pop(0)
+    for im in im_list:
+        _im = get_concat_h_blank(_im, im)
+    return _im
+
+def get_concat_h_blank(im1, im2, color=(0, 0, 0)):
+    dst = Image.new('RGB', (im1.width + im2.width, max(im1.height, im2.height)), color)
+    dst.paste(im1, (0, 0))
+    dst.paste(im2, (im1.width, 0))
+    return dst
+
+def get_concat_v_blank(im1, im2, color=(0, 0, 0)):
+    dst = Image.new('RGB', (max(im1.width, im2.width), im1.height + im2.height), color)
+    dst.paste(im1, (0, 0))
+    dst.paste(im2, (0, im1.height))
+    return dst
+
+get_concat_h_multi_blank([im1, im2, im3, im4, im5,im6,im7,im8,im9]).save('a.png')
+
+
+#get_concat_h_multi_blank(chemin_liste).save('a.jpeg')
+
+#fmg.show()
