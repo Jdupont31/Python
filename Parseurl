@@ -1,0 +1,31 @@
+import re
+import os
+import wget
+
+os.chdir("C:/Users/**/Downloads")
+
+wget.download("https://www.lequipe.fr")
+
+codesourcesouvert = open("C:/Users/**/Downloads/download.wget", "r")
+a = codesourcesouvert.read()
+
+
+def Find(string):
+
+    regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+    url = re.findall(regex, string)
+    return [x[0] for x in url]
+
+result = Find(a)
+
+print(result)
+print (len(result))
+
+
+with open("Data.txt", "w") as text_file:
+    text_file.write(" %s" % result)
+
+
+#for url in Find(a):
+#   wget.download(url)
+
